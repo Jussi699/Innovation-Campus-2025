@@ -1,38 +1,21 @@
-#include <stdbool.h>
+int mx_atoi(const char *src);
 
-bool mx_isdigit(int c);
-int mx_atoi(const char *str);
-bool mx_isspace(char c);
-void mx_printchar(char c);
+void mx_printchar(char c) ;
+
 void mx_printint(int n);
 
-int main(int count, char *size[]) {
-    if (count < 2) {
-        return 0;
-    }
-
-    int sum = 0;
-    for (int i = 1; i < count; i++) {
-        bool skip = false;
-
-        for (int j = 0; size[i][j]; j++) {
-            if ((!mx_isdigit(size[i][j])) && size[i][j] != '+' && size[i][j] != '-') {
-                skip = true;
-                break;
-            }
+int main(int args, char *argv[]) {
+    if (args > 1) {
+        int sum = 0;
+        for (int i = 1; i < args; i++) {
+            sum += mx_atoi(argv[i]);
         }
-
-        if (skip) {
-            continue;
-        }
-
-        int current = mx_atoi(size[i]);
-        sum += current;
+        mx_printint(sum);
+        mx_printchar('\n');
+    } else {
+        mx_printint(0);
+        mx_printchar('\n');
     }
-
-    mx_printint(sum);
-    mx_printchar('\n');
-
     return 0;
 }
-
+  

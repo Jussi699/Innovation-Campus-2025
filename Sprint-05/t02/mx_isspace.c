@@ -1,10 +1,9 @@
- int mx_is_space(char c) {
-    if (c == 32 || c == '\t' || c == '\n' || c == '\v' || c == '\r' || c == '\f'){
+#include <stdbool.h>
+
+bool mx_isspace(char c) {
+    if (c == 32 || (c >= 9 && c <= 13)) {
         return 1;
     }
-    else {
-        return 0;
-    }
-
+    return 0;
 }
-
+  

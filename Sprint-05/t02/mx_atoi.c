@@ -1,25 +1,24 @@
-int mx_atoi(const char *str) {
-    int result = 0;
-    int minus = 0;
+#include <stdbool.h>
 
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] == '-') {
-            minus = 1;
-            continue;
+bool mx_isdigit(int c);
+
+bool mx_isspace(char c);
+
+int mx_atoi(const char *src) {
+    int res = 0;
+    for (int i = 0; src[i] != '\0'; i++) {
+        if (src[i] == '-') {
+            ++i;
         }
-
-        if (str[i] >= '0' && str[i] <= '9') {
-            result = result * 10 + str[i] - '0';
-        } else {
-            break;
+        if (!mx_isdigit(src[i])) {
+            return 0;
         }
-
+        int temp = src[i] - 48;
+        res = res * 10 + temp;
     }
-
-    if (minus) {
-        result = -result;
+    if (src[0] == '-') {
+        res *= -1;
     }
-
-    return result;
+    return res;
 }
-
+  
